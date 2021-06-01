@@ -1,33 +1,54 @@
 import json
 import random
 
+#---------------------
+#Load data
+#---------------------
 with open('sorteo.json','r') as file:
     data = json.load(file)
 
 participants = data['Participants']
 last_host = data['Last_host']
+times_being_host = data['Times_being_host']
+
+names = list(times_being_host.keys())
+times = list(times_being_host.values())
+probs = list(map(lambda x: int(max(times)-x), times))
 
 print('Participantes: ', end = '' )
-[print(x, end = ' ' ) for x in participants]
+[print(x, end = ' ' ) for x in names]
 
+#---------------------
+#Select the Host
+#---------------------
 while True:
-    random.shuffle(participants)
-    if participants[0]!=last_host:
+    win = random.choices(names, weights=probs)[0]
+    if win!=last_host:
         break
-    
-data['Last_host'] = participants[0]
+
+#---------------------
+#Shuffle the rest of participants, and add the host at the beginning
+#---------------------
+names.remove(win)
+random.shuffle(names)
+names.insert(0, win)
+
+#---------------------
+#Save and show results
+#---------------------
+data['Last_host'] = win
 
 try:
-    data['Times_being_host'][participants[0]] += 1 
+    data['Times_being_host'][win] += 1 
 except KeyError:
-    data['Times_being_host'][participants[0]] = 1
+    data['Times_being_host'][win] = 1
 
 print('\nSorteo:')
 
-for i,j in enumerate(participants):    
+for i,j in enumerate(names):    
     print( str(i+1) + "- " + j )
 
 with open('sorteo.json','w') as file:
     json.dump(data,file,indent=4)
-	
-print('\nVersion:11.05.IvanP')
+
+print('\nVersion:01.06.2021.MeliS')

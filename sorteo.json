@@ -7,13 +7,13 @@
         "Cris",
         "Caro"
     ],
-    "Last_host": "Meli",
+    "Last_host": "Chiqui",
     "Times_being_host": {
         "Meli": 1,
         "Santi": 1,
         "Cris": 1,
         "Ivan": 1,
-        "Chiqui": 0,
+        "Chiqui": 1,
         "Caro": 0
     }
 }
