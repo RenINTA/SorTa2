@@ -1,0 +1,19 @@
+{
+    "Participants": [
+        "Meli",
+        "Ivan",
+        "Chiqui",
+        "Santi",
+        "Cris",
+        "Caro"
+    ],
+    "Last_host": "Meli",
+    "Times_being_host": {
+        "Meli": 1,
+        "Santi": 1,
+        "Cris": 1,
+        "Ivan": 1,
+        "Chiqui": 0,
+        "Caro": 0
+    }
+}
